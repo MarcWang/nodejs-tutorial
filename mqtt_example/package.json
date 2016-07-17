@@ -1,0 +1,15 @@
+{
+  "name": "mqtt_example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mosca": "^2.0.2",
+    "mqtt": "^1.12.0"
+  }
+}
