@@ -35,6 +35,7 @@ module.exports = function(logHandler) {
 
     router.use((request, response, next) => {
         logHandler.outputInfo(`${request.method}: ${request.originalUrl} From '${request.hostname}', Time: ${Date.now()} `);
+        logHandler.outputInfo(JSON.stringify(request.session));
         next();
     });
 
@@ -53,7 +54,6 @@ module.exports = function(logHandler) {
             accountRegister(username, password, permission, thumbnail, email, phone)
                 .then((value) => {
                     passport.authenticate('local')(request, response, () => {
-                        console.log(request.session);
                         response.json(value);
                     });
                 })
@@ -63,30 +63,35 @@ module.exports = function(logHandler) {
                 });
         });
 
-    router.route('/login', passport.authenticate('local'))
+    router.route('/login')
         .get((request, response, next) => {
-            next();
+            if (_.isString(request.session.passport.user)) {
+                response.json(`login with ${request.session.passport.user}`);
+            } else {
+                response.json('not login');
+            }
         })
         .post((request, response, next) => {
-            console.log(request.session);
             let username = request.body.username;
-            accountMgr.getProfile(username)
-                .then((resultData) => {
-                    response.json(resultData);
-                })
-                .catch((error) => {
-                    response.json(error);
-                });
+            passport.authenticate('local')(request, response, () => {
+                accountMgr.getProfile(username)
+                    .then((resultData) => {
+                        response.json(resultData);
+                    })
+                    .catch((error) => {
+                        response.json(error);
+                    });
+            });
+
         });
 
     router.route('/logout')
         .get((request, response, next) => {
-            next();
+            request.logout();
+            response.json('logout');
         })
         .post((request, response, next) => {
-            console.log(request.session);
             request.logout();
-            console.log(request.session);
             response.json('logout');
         });
 

@@ -42,12 +42,8 @@ class AccountManager {
                     phone: phone
                 }
 
-                console.log(accountDetails)
-
                 let details = new AccountDetailsModel(accountDetails);
                 details.save();
-
-                console.log(details)
 
                 resultData.code = 0;
                 resultData.details.username = account.username;
