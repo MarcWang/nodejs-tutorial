@@ -7,6 +7,7 @@
 - [passportjs](https://github.com/jaredhanson/passport) - Authentication middleware for Express
 - [csurf](https://github.com/expressjs/csurf) - CSRF protection middleware for Express
 - [connect-timeout](https://github.com/expressjs/timeout) - Request timeout middleware for Connect/Express
+- [errorhandler](https://github.com/expressjs/errorhandler) - Development-only error handler middleware for Express
 
 ### Passport Strategy
 - [passport-local](https://github.com/jaredhanson/passport-local) - Username and password authentication strategy for Passport
