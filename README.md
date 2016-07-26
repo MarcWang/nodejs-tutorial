@@ -1,12 +1,12 @@
+
 ### Required
 - NodeJS v6.x
-- 
-
 
 
 ### Express Module
 - [passportjs](https://github.com/jaredhanson/passport) - Authentication middleware for Express
 - [csurf](https://github.com/expressjs/csurf) - CSRF protection middleware for Express
+- [connect-timeout](https://github.com/expressjs/timeout) - Request timeout middleware for Connect/Express
 
 ### Passport Strategy
 - [passport-local](https://github.com/jaredhanson/passport-local) - Username and password authentication strategy for Passport
@@ -14,3 +14,7 @@
 
 ### Security Module
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Implementation of JSON Web Tokens
+
+
+### Module
+- [http-errors](https://github.com/jshttp/http-errors) - HTTP errors for Express, Koa, Connect, etc. with ease.
