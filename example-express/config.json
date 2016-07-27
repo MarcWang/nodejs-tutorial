@@ -1,0 +1,12 @@
+{
+    "process": {
+        "name": "server"
+    },
+    "database": {
+        "name": "server",
+        "port": 27017
+    },
+    "server": {
+        "port": 3000
+    }
+}

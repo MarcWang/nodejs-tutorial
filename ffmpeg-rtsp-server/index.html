@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    select {
+        display: block;
+    }
+    
+    #container > div {
+        border: 1px solid black;
+    }
+    </style>
+</head>
+<!-- // rtsp://192.168.10.210/v2
+// rtsp://admin:admin@192.168.10.233:554/
+// rtsp://root:pass@192.168.10.228:554/axis-media/media.amp
+// rtsp://root:pass@192.168.10.238:554/axis-media/media.amp
+// rtsp://192.168.10.241:554/live2.sdp
+// rtsp://admin:123456@192.168.10.242:7070/onvif-stream1
+// rtsp://admin:123456@192.168.10.243:7070/onvif-stream1
+// rtsp://192.168.10.199/v2
+// rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov
+ -->
+
+<body>
+    <div id="container">
+        <canvas id="myCanvas0" width="640" height="480" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas1" width="640" height="480" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas2" width="640" height="480" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas3" width="640" height="480" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas4" width="640" height="480" style="border:1px solid #000000;"></canvas>
+        <canvas id="myCanvas5" width="640" height="480" style="border:1px solid #000000;"></canvas>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    function drawImage(c, data) {
+        var ctx = c.getContext("2d");
+        var image = new Image();
+        image.onload = function() {
+            ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, c.width, c.height);
+        }
+        // var bytes = new Uint8Array(data);
+        image.src = 'data:image/jpeg;base64,' + data;
+    }
+
+    function createStream(id) {
+
+        var socket = io(location.origin, {
+            'force new connection': true
+        });
+
+        var dataId = 'data' + id;
+        var canvasId = 'myCanvas' + id;
+        socket.on(dataId, function(data) {
+            var c = document.getElementById(canvasId);
+            drawImage(c, data);
+        });
+    }
+
+    createStream(0);
+    createStream(1);
+    createStream(2);
+    createStream(3);
+    createStream(4);
+    createStream(5);
+    </script>
+</body>
+
+</html>
