@@ -54,7 +54,7 @@ server.on('unsubscribed', (topic, client) => {
 });
 
 // fired when a message is received
-// server.on('published', (packet, client) => {
+server.on('published', (packet, client) => {
     // console.log('Published : ', packet.payload);
     // var message = {
     //   topic: 'presence1',
@@ -66,7 +66,7 @@ server.on('unsubscribed', (topic, client) => {
     // server.publish(message, function() {
     //     console.log('done!');
     // });
-// });
+});
 
 server.on('ready', () => {
     console.log('Mosca server is up and running');

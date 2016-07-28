@@ -11,13 +11,18 @@ var settings = {
 
 var client = mqtt.connect(settings);
 client.on('connect', function() {
-    client.subscribe('presence1', { qos: 1 }, (err, granted) => {
+    client.subscribe('presenceB', { qos: 1 }, (err, granted) => {
         console.log(granted)
     });
 });
 
 client.on('message', function(topic, message, pakcet) {
-    console.log(`client ${message.toString()}`);
+    console.log(`${JSON.stringify(pakcet)}`);
+    console.log(`client ${topic} : ${message.toString()}`);
+    setTimeout(()=>{
+        client.publish('presenceA', `message ${new Date()}`, { qos: 1 }, () => {
+        });
+    },1000)
     // console.log(pakcet);
     // client.end();
 });
