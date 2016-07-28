@@ -16,6 +16,7 @@
 
 ### Security Module
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Implementation of JSON Web Tokens
+- [socketio-jwt](https://github.com/auth0/socketio-jwt) - Authenticate socket.io incoming connections with JWTs
 
 ### Communicate
 - [socketcluster](https://github.com/SocketCluster/socketcluster) - Highly scalable realtime microframework
