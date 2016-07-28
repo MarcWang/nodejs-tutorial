@@ -12,11 +12,15 @@
 ### Passport Strategy
 - [passport-local](https://github.com/jaredhanson/passport-local) - Username and password authentication strategy for Passport
 - [passport-jwt](https://github.com/themikenicholson/passport-jwt) - Authenticating with a JSON Web Token for Passport
+- [passport.socketio](https://github.com/jfromaniello/passport.socketio) - Access passport.js user information from a socket.io connection
 
 ### Security Module
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Implementation of JSON Web Tokens
 
+### Communicate
+- [socketcluster](https://github.com/SocketCluster/socketcluster) - Highly scalable realtime microframework
 
 ### Module
 - [http-errors](https://github.com/jshttp/http-errors) - HTTP errors for Express, Koa, Connect, etc. with ease.
 - [minimist](https://github.com/substack/minimist) - Parse argument options
+- [email-verification](https://github.com/whitef0x0/node-email-verification) - Send user verification emails with NodeJS and MongoDB
