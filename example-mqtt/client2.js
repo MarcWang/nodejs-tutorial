@@ -11,7 +11,7 @@ var settings = {
 
 var client = mqtt.connect(settings);
 client.on('connect', function() {
-    client.subscribe('presence', { qos: 1 }, (err, granted) => {
+    client.subscribe('presence1', { qos: 1 }, (err, granted) => {
         console.log(granted)
     });
 });

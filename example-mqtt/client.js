@@ -14,13 +14,12 @@ var client = mqtt.connect(settings);
 
 // var client = mqtt.connect({ port: 1883, host: 'localhost', keepalive: 10000});
 client.on('connect', function() {
-    client.subscribe('presence', { qos: 1 }, () => {
+    client.subscribe('presence', { qos: 0 }, () => {
         console.log('subscribe')
     });
 
     setInterval(() => {
-        client.publish('presence', `message ${new Date()}`, { qos: 1 }, () => {
-
+        client.publish('presence1', `message ${new Date()}`, { qos: 0 }, () => {
         });
     }, 1000)
 });
