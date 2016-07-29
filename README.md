@@ -35,6 +35,7 @@
 - [http-errors](https://github.com/jshttp/http-errors) - HTTP errors for Express, Koa, Connect, etc. with ease.
 - [minimist](https://github.com/substack/minimist) - Parse argument options
 - [email-verification](https://github.com/whitef0x0/node-email-verification) - Send user verification emails with NodeJS and MongoDB
+- [jimp](https://github.com/oliver-moran/jimp) - An image processing library written entirely in JavaScript for Node
 
 ### 
 - [strongloop](https://strongloop.com/node-js/api-gateway/) - API Gateway acts as an intermediary gateway between API consumers (clients) and backend providers (API servers)
