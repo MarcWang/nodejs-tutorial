@@ -3,17 +3,9 @@ const PersonDetailModel = require('./model/PersonDetail');
 const mongoose = require('mongoose');
 const _ = require('lodash');
 
-let dbName = process.env.DB_NAME || 'example-mongoose';
-let dbHost = process.env.DB_HOST || 'localhost'
-let dbPort = process.env.DB_PORT || 27017;
-
-function dbConnect() {
-    mongoose.connect(`mongodb://${dbHost}:${dbPort}/${dbName}`, { config: { autoIndex: false } });
-}
-
 let db = mongoose.connection;
-db.once('open', () => {
 
+db.once('open', () => {
     function isPersonExisted(name) {
         return new Promise((resolve, reject) => {
             PersonModel
@@ -26,7 +18,6 @@ db.once('open', () => {
     }
 
     function createPerson(personInfo, cb) {
-
         isPersonExisted(personInfo.name)
             .then((isExisted) => {
                 if (isExisted) {
@@ -83,8 +74,36 @@ db.once('open', () => {
     })
 });
 
-db.on('error', (err) => {
-    console.log(err);
+db.on('connected', () => {
+    console.log('connected!');
+});
+
+db.on('reconnected', () => {
+    console.log('reconnected!');
+});
+
+db.on('disconnected', () => {
+    console.log('disconnected!');
     setTimeout(dbConnect, 1000);
 });
+
+db.on('error', (err) => {
+    console.log(err);
+});
+
+db.on('close', () => {
+    console.log('close');
+});
+
+function dbConnect() {
+    let dbName = process.env.DB_NAME || 'example-mongoose-pass';
+    let dbHost = process.env.DB_HOST || 'localhost'
+    let dbPort = process.env.DB_PORT || 27017;
+    let dbUser = '';
+    let dbPass = '';
+    const uri = `mongodb://${dbHost}:${dbPort}/${dbName}`;
+    const options = { server: { auto_reconnect: false } };
+    mongoose.connect(uri, options);
+}
+
 dbConnect();
