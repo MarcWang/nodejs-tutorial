@@ -1,16 +1,26 @@
 var mosca = require('mosca');
 
 var ascoltatore = {
-    //using ascoltatore
-    type: 'mongo',
-    url: 'mongodb://localhost:27017/mqtt',
-    pubsubCollection: 'ascoltatori',
-    mongo: {}
+    type: 'redis',
+    redis: require('redis'),
+    db: 12,
+    port: 6379,
+    return_buffers: true, // to handle binary payloads
+    host: "localhost",
+    ttl: {
+        // TTL for subscriptions is 23 hour
+        subscriptions: 23 * 60 * 60 * 1000,
+        // TTL for packets is 23 hour
+        packets: 23 * 60 * 60 * 1000,
+    },
 };
 
 var settings = {
     port: 1883,
-    backend: ascoltatore
+    backend: ascoltatore,
+    persistence: {
+        factory: mosca.persistence.Redis
+    }
 };
 
 var server = new mosca.Server(settings);

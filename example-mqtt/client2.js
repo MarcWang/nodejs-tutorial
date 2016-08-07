@@ -5,8 +5,8 @@ var settings = {
     keepalive: 10,
     protocolId: 'MQIsdp',
     protocolVersion: 3,
-    clientId: 'client-b'
-    // clean: false
+    clientId: 'client-b',
+    clean: false
 }
 
 var client = mqtt.connect(settings);
@@ -16,15 +16,22 @@ client.on('connect', function() {
     });
 });
 
+client.on('offline', function() {
+    console.log('offline')
+});
+
 client.on('message', function(topic, message, pakcet) {
-    console.log(`${JSON.stringify(pakcet)}`);
+    // console.log(`${JSON.stringify(pakcet)}`);
     console.log(`client ${topic} : ${message.toString()}`);
-    setTimeout(()=>{
-        client.publish('presenceA', `message ${new Date()}`, { qos: 1 }, () => {
-        });
-    },1000)
+    // setTimeout(()=>{
+    //     client.publish('presenceA', `message ${new Date()}`, { qos: 1 }, () => {
+    //     });
+    // },1000)
     // console.log(pakcet);
-    // client.end();
+    // client.end(()=>{
+    //     console.log('disconnect');
+    //     client.reconnecting = true;
+    // });
 });
 
 client.on('error', function(err) {
@@ -33,5 +40,5 @@ client.on('error', function(err) {
 });
 
 client.on('close', function() {
-    console.log(" disconected");
+    console.log(" close");
 });
