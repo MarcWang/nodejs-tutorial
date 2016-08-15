@@ -10,8 +10,9 @@
 - [express-jwt](https://github.com/auth0/express-jwt) - connect/express middleware that validates a JsonWebToken (JWT)
 - [express-session](https://github.com/expressjs/session) - Simple session middleware for Express
 - [express-limiter](https://github.com/ded/express-limiter) - Rate limiting middleware for Express
-- [compression](https://github.com/expressjs/compression) compression middleware
-- [multer](https://github.com/expressjs/multer) handling multipart/form-data middleware
+- [compression](https://github.com/expressjs/compression) - compression middleware
+- [multer](https://github.com/expressjs/multer) - handling multipart/form-data middleware
+- [serve-favicon](https://github.com/expressjs/serve-favicon) - favicon serving middleware
 
 ### Passport Strategy
 - [passport-local](https://github.com/jaredhanson/passport-local) - Username and password authentication strategy for Passport
