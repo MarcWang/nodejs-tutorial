@@ -32,6 +32,11 @@
 ### Communicate
 - [socketcluster](https://github.com/SocketCluster/socketcluster) - Highly scalable realtime microframework
 
+
+### Database
+- [thinky](https://github.com/neumino/thinky) - ORM for RethinkDB
+- [mongoose](https://github.com/Automattic/mongoose) - MongoDB
+
 ### Module
 - [http-errors](https://github.com/jshttp/http-errors) - HTTP errors for Express, Koa, Connect, etc. with ease.
 - [minimist](https://github.com/substack/minimist) - Parse argument options
