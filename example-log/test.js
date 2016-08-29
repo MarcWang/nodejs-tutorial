@@ -1,4 +1,4 @@
-const LogHandler = require('./index');
+const LogHandler = require('./index.js');
 
 // process.env.NODE_ENV = 'production';
 

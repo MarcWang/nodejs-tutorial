@@ -4,10 +4,11 @@ const fs = require('fs');
 const colors = require('colors');
 
 class LogHandler {
-    constructor(name, path) {
+    constructor(...argv) {
         this.log = {};
-        this.log.name = name || 'app';
-        this.log.path = path || './log';
+        this.log.type = argv[0];
+        this.log.name = 'app';
+        this.log.path = argv[1] || './log';
         this.log.output = {};
         this.log.output.info = bunyan.createLogger({
             name: this.log.name,
@@ -40,20 +41,20 @@ class LogHandler {
     outputInfo(msg) {
         let self = this;
         self.log.output.info.debug(msg);
-        console.log(colors.green.bold(msg));
+        console.log(`${colors.green.bold(self.log.type)}  ${msg}`);
     }
 
     outputError(msg) {
         let self = this;
         self.log.output.error.debug(msg);
-        console.log(colors.red.bold('Error : ' + msg));
+        console.log(`${colors.red.bold(self.log.type)}  ${msg}`);
     }
 
     outputDebug(msg){
         let self = this;
         if( process.env.NODE_ENV !== 'production' )
             self.log.output.debug.debug(msg);
-        console.log(colors.bgYellow.blue.bold(msg));
+        console.log(`${colors.bgYellow.blue.bold(self.log.type)}  ${msg}`);
     }
 
     outputBlue(msg) {

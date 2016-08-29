@@ -102,7 +102,7 @@ function asyncFunc(delayTime) {
     }
 }
 
-function* generateWorker() {
+function* generatorWorker() {
     let readyWorker1 = yield asyncFunc(0);
     console.log(`call first function was done in ${readyWorker1.value}ms using promise`);
     let readyWorker2 = yield asyncFunc(1000);
@@ -110,7 +110,7 @@ function* generateWorker() {
     let readyWorker3 = yield asyncFunc(2000);
     console.log(`call final function was done in ${readyWorker3.value}ms using promise`);
 }
-let workProc = generateWorker();
+let workProc = generatorWorker();
 workProc.next(); //進入generateWorker直到第一個yield停止
 
 
@@ -131,17 +131,17 @@ function callbackFuncPackage(delayTime) {
     })
 }
 
-function* generateWorker() {
+function* generatorWorker() {
     let readyWorker1 = yield callbackFuncPackage(1000);
-    if (readyWorker1.result) console.log(`call first function was done in ${readyWorker1.value}ms using generate`);
+    if (readyWorker1.result) console.log(`call first function was done in ${readyWorker1.value}ms using generator`);
     let readyWorker2 = yield callbackFuncPackage(readyWorker1.value * 2);
-    if (readyWorker2.result) console.log(`call second function was done in ${readyWorker2.value}ms using generate`);
+    if (readyWorker2.result) console.log(`call second function was done in ${readyWorker2.value}ms using generator`);
     let readyWorker3 = yield callbackFuncPackage(readyWorker2.value * 2);
-    if (readyWorker3.result) console.log(`call final function was done in ${readyWorker3.value}ms using generate`);
+    if (readyWorker3.result) console.log(`call final function was done in ${readyWorker3.value}ms using generator`);
 
 }
 
-let workProc = generateWorker();
+let workProc = generatorWorker();
 workProc.next();
 
 
@@ -166,17 +166,17 @@ function promiseFuncPackage(delayTime) {
         })
 }
 
-function* generateWorker() {
+function* generatorWorker() {
     let readyWorker1 = yield promiseFuncPackage(1000);
-    if (readyWorker1.result) console.log(`call first function was done in ${readyWorker1.value}ms using generate`);
+    if (readyWorker1.result) console.log(`call first function was done in ${readyWorker1.value}ms using generator`);
     let readyWorker2 = yield promiseFuncPackage(readyWorker1.value * 2);
-    if (readyWorker2.result) console.log(`call second function was done in ${readyWorker2.value}ms using generate`);
+    if (readyWorker2.result) console.log(`call second function was done in ${readyWorker2.value}ms using generator`);
     let readyWorker3 = yield promiseFuncPackage(readyWorker2.value * 2);
-    if (readyWorker3.result) console.log(`call final function was done in ${readyWorker3.value}ms using generate`);
+    if (readyWorker3.result) console.log(`call final function was done in ${readyWorker3.value}ms using generator`);
 
 }
 
-let workProc = generateWorker();
+let workProc = generatorWorker();
 workProc.next();
 
 
@@ -190,16 +190,16 @@ function promiseFunc(delayTime) {
     })
 }
 
-function* generateWorker() {
+function* generatorWorker() {
     let value1 = yield promiseFunc(1000);
-    console.log(`call first function was done in ${value1}ms using generate`);
+    console.log(`call first function was done in ${value1}ms using generator`);
     let value2 = yield promiseFunc(value1 * 2);
-    console.log(`call first function was done in ${value2}ms using generate`);
+    console.log(`call first function was done in ${value2}ms using generator`);
     let value3 = yield promiseFunc(value2 * 2);
-    console.log(`call first function was done in ${value3}ms using generate`);
+    console.log(`call first function was done in ${value3}ms using generator`);
 }
 
-let workProc = generateWorker();
+let workProc = generatorWorker();
 (function process(readyWork) {
     if (readyWork.done) {
         return;
