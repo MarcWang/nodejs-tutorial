@@ -22,15 +22,6 @@ const AccountModel = thinky.createModel("Account", {
     })
 });
 
-const AccountDetailsModel = thinky.createModel("AccountDetails", {
-    id: thinky.type.string(),
-    accountId: thinky.type.string(),
-    like: thinky.type.string()
-});
-
-AccountModel.hasOne(AccountDetailsModel, "account", "id", "accountId");
-
-
 thinky.dbReady().then(() => { console.log('ready') })
 
 AccountModel.define("isMatch", function(account) {
@@ -117,8 +108,6 @@ function query(cb) {
         });
 }
 
-// createDetails({name: 'Marc', age: 29, gender: 1, account: { like: 'baseball' }});
-
 // create({ name: 'Marc', age: 29, gender: 1  });
 // update({ name: 'Marc', age: 29, gender: 1 });
 // del({ name: 'Marc'});
@@ -129,5 +118,3 @@ query((err, accounts) => {
 
     })
 });
-
-
