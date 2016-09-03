@@ -42,6 +42,7 @@
 - [minimist](https://github.com/substack/minimist) - Parse argument options
 - [email-verification](https://github.com/whitef0x0/node-email-verification) - Send user verification emails with NodeJS and MongoDB
 - [jimp](https://github.com/oliver-moran/jimp) - An image processing library written entirely in JavaScript for Node
+- [node-fetch](https://github.com/bitinn/node-fetch) - A light-weight module that brings window.fetch to node.js and io.js
 
 ### 
 - [strongloop](https://strongloop.com/node-js/api-gateway/) - API Gateway acts as an intermediary gateway between API consumers (clients) and backend providers (API servers)
