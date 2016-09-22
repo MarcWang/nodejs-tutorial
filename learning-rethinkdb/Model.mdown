@@ -1,0 +1,146 @@
+## document.getModel() -> Model
+
+回傳 Document 的建構式
+
+```js
+// 建立Account的Model
+const AccountModel = thinky.createModel("Account", {
+    id: thinky.type.string(),
+    name: thinky.type.string()
+});
+
+let account = new AccountModel({
+    name: "Marc"
+});
+
+// 取得原始Account的Model建構式
+const OriAccountModel = account.getModel();
+
+let account2 = new OriAccountModel({
+    name: "BuBu"
+});
+```
+
+
+## document.save([callback]) -> Promise
+
+儲存 Document
+
+```js
+function create(name, cb) {
+    let account = new AccountModel({
+        name: name
+    });
+    account.save()
+        .then((model) => {
+            cb(null, model);
+        })
+        .error((error) => {
+            cb(error);
+        });
+}
+
+
+create('Marc', (error, model) => {
+    if (error) {
+        console.err(error)
+    } else {
+        console.log(model)
+    }
+})
+```
+
+## document.merge(doc)
+
+更新 Document 時使用
+
+```js
+
+// 建立一個Account
+function create(name, cb) {
+    let account = new AccountModel({
+        name: name
+    });
+    account.save()
+        .then((model) => {
+            cb(null, model);
+        })
+        .error((error) => {
+            cb(error);
+        });
+}
+
+// 更新一個Account
+function merge(accountId, name, age, cb) {
+    let mergeData = {
+        name: name,
+        age: age
+    }
+    AccountModel.get(accountId).run().then((acc) => {
+        acc.merge(mergeData).save().then((model) => {
+            cb(null, model)
+        });
+    });
+}
+
+create('Marc', (error, model) => {
+    if (error) {
+        console.err(error)
+    } else {
+        console.log(model)
+        let id = model.id;
+        merge(id, 'Ingrid', 27, (error, model) => {
+            if (error) { console.err(error) } else { console.log(model) }
+        })
+    }
+})
+```
+
+## document.saveAll([modelToSave], [callback]) -> Promise
+
+儲存 Document 且加入相關的 Document 一並儲存
+
+```js
+
+// 人物的Document
+const UserModel = thinky.createModel("User", {
+    id: thinky.type.string(),
+    name: thinky.type.string(),
+    age: thinky.type.number()
+});
+
+// 關係的Document
+const RelationshipModel = thinky.createModel("Relationship", {
+    id: thinky.type.string(),
+    userId: thinky.type.string(),
+    mateName: thinky.type.string()
+});
+
+// 連結兩個Documnet的關係
+UserModel.hasOne(RelationshipModel, "relationship", "id", "userId");
+
+function create(name, age, relationship, cb) {
+    let account = new UserModel({
+        name: name,
+        age: age,
+        relationship: relationship
+    });
+
+    //儲存條件內有關係的Dosument資料
+    account.saveAll({ relationship: true })
+        .then((model) => {
+            cb(null, model);
+        })
+        .error((error) => {
+            cb(error);
+        });
+}
+
+create('Marc', 29, { mateName: 'Ingrid' }, (error, model) => {
+    if (error) {
+        console.err(error)
+    } else {
+        console.log(model)
+    }
+})
+```
