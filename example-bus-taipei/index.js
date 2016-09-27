@@ -6,44 +6,92 @@ const out = fs.createWriteStream('input.txt.gz');
 const request = require('request');
 const gzip = zlib.createGzip();
 
-var downloadAndUnzip = function(url) {
+function getRoute() {
+    return new Promise(function(resolve, reject) {
+        request({
+            url: 'http://data.taipei/bus/ROUTE',
+            method: 'GET',
+            encoding: null
+        }, function(err, response, body) {
+            if (err) {
+                return reject(err);
+            } else {
+                zlib.gunzip(body, function(err, result) {
+                    if (err) return console.error(err);
 
-    var download = function(url) {
-        return new Promise(function(resolve, reject) {
-            request({
-                url: url,
-                method: 'GET',
-                encoding: null
-            }, function(err, response, body) {
-                if (err) {
-                    return reject(err);
-                }
-                resolve(body);
-            });
-        });
-    };
+                    const jsonData = JSON.parse(result.toString());
+                    console.log(jsonData.EssentialInfo);
+                    console.log(jsonData.BusInfo.length);
 
-    var unzip = function(buffer) {
-        zlib.gunzip(buffer, function(err, result) {
-            if (err) return console.error(err);
-            // console.log(result.toString());
-
-            const jsonData = JSON.parse(result.toString());
-            console.log(jsonData.EssentialInfo);
-            // console.log(jsonData.BusInfo.length);
-            for(let i = 0; i < jsonData.BusInfo.length; i++){
-            	if( jsonData.BusInfo[i].RouteID == 10293 )
-            		console.log(jsonData.BusInfo[i]);
+                });
             }
-            
         });
-    };
-
-    return download(url)
-        .then(unzip);
+    });
 };
 
-downloadAndUnzip('http://data.taipei/bus/EstimateTime')
+function getEstimateTime() {
+    return new Promise(function(resolve, reject) {
+        request({
+            url: 'http://data.taipei/bus/EstimateTime',
+            method: 'GET',
+            encoding: null
+        }, function(err, response, body) {
+            if (err) {
+                return reject(err);
+            } else {
+                zlib.gunzip(body, function(err, result) {
+                    if (err) return console.error(err);
+
+                    const jsonData = JSON.parse(result.toString());
+                    console.log(jsonData.EssentialInfo);
+                    console.log(jsonData.BusInfo.length);
+
+                });
+            }
+        });
+    });
+};
+
+function getStop() {
+    return new Promise(function(resolve, reject) {
+        request({
+            url: 'http://data.taipei/bus/Stop',
+            method: 'GET',
+            encoding: null
+        }, function(err, response, body) {
+            if (err) {
+                return reject(err);
+            } else {
+                zlib.gunzip(body, function(err, result) {
+                    if (err) return console.error(err);
+
+                    const jsonData = JSON.parse(result.toString());
+                    console.log(jsonData.EssentialInfo);
+                    console.log(jsonData.BusInfo.length);
+
+                });
+            }
+        });
+    });
+};
+
+getRoute()
+    .then(() => {
+    })
+
+getStop()
+    .then(() => {
+    })
+
+getEstimateTime()
+    .then(() => {
+    })
+
+
+// downloadAndUnzip('http://data.taipei/bus/EstimateTime')
+
+// http://data.taipei/bus/ROUTE
+// http://data.taipei/bus/Stop
 
 // 預估到站時間 http://data.taipei/bus/EstimateTime
 // http://data.taipei/opendata/datalist/datasetMeta/preview?id=f11a5af0-7b37-48ef-98cc-f6f102ed43c6&rid=4f081f55-5c92-4805-ad3c-dc66fec30b02
