@@ -1,10 +1,6 @@
-var fetch = require('node-fetch');
 const fs = require('fs');
 const zlib = require('zlib')
-var AdmZip = require('adm-zip');
-const out = fs.createWriteStream('input.txt.gz');
 const request = require('request');
-const gzip = zlib.createGzip();
 
 function getRoute() {
     return new Promise(function(resolve, reject) {
@@ -21,7 +17,7 @@ function getRoute() {
 
                     const jsonData = JSON.parse(result.toString());
                     console.log(jsonData.EssentialInfo);
-                    console.log(jsonData.BusInfo.length);
+                    console.log(jsonData.BusInfo[0])
 
                 });
             }
@@ -43,8 +39,12 @@ function getEstimateTime() {
                     if (err) return console.error(err);
 
                     const jsonData = JSON.parse(result.toString());
-                    console.log(jsonData.EssentialInfo);
-                    console.log(jsonData.BusInfo.length);
+                    // console.log(jsonData.EssentialInfo);
+                    // console.log(jsonData.BusInfo[0])
+                    for (let i = 0; i < jsonData.BusInfo.length; i++) {
+                        if( jsonData.BusInfo[i].RouteID == 16184)
+                            console.log(jsonData.BusInfo[i]);
+                    }
 
                 });
             }
@@ -66,8 +66,12 @@ function getStop() {
                     if (err) return console.error(err);
 
                     const jsonData = JSON.parse(result.toString());
-                    console.log(jsonData.EssentialInfo);
-                    console.log(jsonData.BusInfo.length);
+                    // console.log(jsonData.EssentialInfo);
+                    // console.log(jsonData.BusInfo[0])
+                    // for (let i = 0; i < jsonData.BusInfo.length; i++) {
+                    //     if( jsonData.BusInfo[i].RouteID == 16184)
+                    //         console.log(jsonData.BusInfo[i]);
+                    // }
 
                 });
             }
@@ -76,8 +80,7 @@ function getStop() {
 };
 
 getRoute()
-    .then(() => {
-    })
+    .then(() => {})
 
 getStop()
     .then(() => {
