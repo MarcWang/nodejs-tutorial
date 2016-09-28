@@ -9,8 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "adm-zip": "^0.4.7",
-    "node-fetch": "^1.6.3",
+    "immutable": "^3.8.1",
     "request": "^2.75.0"
   }
 }
