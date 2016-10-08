@@ -2,7 +2,8 @@
 
 var Sequelize = require("sequelize");
 
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize) {
+
     var Ticket = sequelize.define('ticket', {
             id: {
                 type: Sequelize.UUID,
