@@ -44,8 +44,13 @@
 - [jimp](https://github.com/oliver-moran/jimp) - An image processing library written entirely in JavaScript for Node
 - [node-fetch](https://github.com/bitinn/node-fetch) - A light-weight module that brings window.fetch to node.js and io.js
 
+### Utility
+- [node-schedule](https://github.com/node-schedule/node-schedule) - A cron-like and not-cron-like job scheduler
+- [momentjs](http://momentjs.com/) - Parse, validate, manipulate, and display dates in JavaScript
+- [lodash](https://lodash.com/) - A modern JavaScript utility library delivering modularity, performance & extras.
+
 ### Test
-- [ava]()
+- [ava](https://github.com/avajs/ava) - Futuristic JavaScript test runner
 - [mocha]()
 - [chai](http://chaijs.com/api/bdd/)
 
