@@ -1,4 +1,5 @@
 const userRouter = require('./routers/apiUserRouter');
+const passport = require('passport');
 
 module.exports = function(app, logHandler) {
 
