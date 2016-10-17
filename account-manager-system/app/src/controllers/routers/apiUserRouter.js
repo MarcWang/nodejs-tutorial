@@ -12,7 +12,6 @@ module.exports = function(logHandler) {
                 failureRedirect: '/signup',
                 failureFlash: true,
             }, (err, user, info) => {
-                console.log(info);
                 if (err) {
                     response.json({ result: false, msg: err });
                 } else {
@@ -48,10 +47,9 @@ module.exports = function(logHandler) {
     router.route('/auth/facebook/callback')
         .get((request, response, next) => {
             passport.authenticate('facebook', {
-                scope: 'email'
+                scope: ['user_friends', 'user_birthday', 'user_hometown', 'user_location', 'email']
             }, (err, user, info) => {
                 if (err) {
-                    console.log(info);
                     response.json({ result: false, msg: err });
                 } else {
                     response.json({ result: true });

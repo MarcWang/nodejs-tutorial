@@ -73,40 +73,46 @@ module.exports = function(passport) {
         }));
 
     passport.use(new FacebookStrategy({
-            clientID: ConfigAuth.facebookAuth.clientID,
-            clientSecret: ConfigAuth.facebookAuth.clientSecret,
-            callbackURL: ConfigAuth.facebookAuth.callbackURL,
-            profileFields: ['id', 'email', 'first_name', 'last_name'],
-        },
-        function(token, refreshToken, profile, done) {
-            console.log('facebook');
-            // process.nextTick(function() {
-            //     User.findOne({ 'facebook.id': profile.id }, function(err, user) {
-            //         if (err)
-            //             return done(err);
-            //         if (user) {
-            //             return done(null, user);
-            //         } else {
-            //             var newUser = new User();
-            //             newUser.facebook.id = profile.id;
-            //             newUser.facebook.token = token;
-            //             newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
-            //             newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
+        clientID: process.env.OAUTH2_FB_ID || ConfigAuth.facebookAuth.clientID,
+        clientSecret: process.env.OAUTH2_FB_SECRET || ConfigAuth.facebookAuth.clientSecret,
+        callbackURL: ConfigAuth.facebookAuth.callbackURL,
+        profileFields: ['id', 'email', 'first_name', 'last_name', 'displayName'],
+    }, (token, refreshToken, profile, done) => {
+        console.log('facebook');
+        console.log(`token ${token}`);
+        console.log(`refreshToken ${refreshToken}`);
+        console.log(`facebook id ${profile.id}`);
+        console.log(`facebook email ${profile.emails[0].value}`);
+        console.log(profile);
 
-            //             newUser.save(function(err) {
-            //                 if (err)
-            //                     throw err;
-            //                 return done(null, newUser);
-            //             });
-            //         }
-            //     });
-            // });
+        done();
+        // process.nextTick(function() {
+        //     User.findOne({ 'facebook.id': profile.id }, function(err, user) {
+        //         if (err)
+        //             return done(err);
+        //         if (user) {
+        //             return done(null, user);
+        //         } else {
+        //             var newUser = new User();
+        //             newUser.facebook.id = profile.id;
+        //             newUser.facebook.token = token;
+        //             newUser.facebook.name = profile.name.givenName + ' ' + profile.name.familyName;
+        //             newUser.facebook.email = (profile.emails[0].value || '').toLowerCase();
 
-        }));
+        //             newUser.save(function(err) {
+        //                 if (err)
+        //                     throw err;
+        //                 return done(null, newUser);
+        //             });
+        //         }
+        //     });
+        // });
+
+    }));
 
     passport.use(new GoogleStrategy({
-            clientID: ConfigAuth.googleAuth.clientID,
-            clientSecret: ConfigAuth.googleAuth.clientSecret,
+            clientID: process.env.OAUTH2_GOOGLE_ID || ConfigAuth.googleAuth.clientID,
+            clientSecret: process.env.OAUTH2_GOOGLE_SECRET || ConfigAuth.googleAuth.clientSecret,
             callbackURL: ConfigAuth.googleAuth.callbackURL,
         },
         function(token, refreshToken, profile, done) {

@@ -6,11 +6,11 @@ const Session = require('express-session');
 const ConfigServer = require('./app/src/config/server');
 // const https = require('https');
 const http = require('http');
-
+require('dotenv').config({path: '.env'});
 
 function* work() {
     const app = Express();
-    app.set('port', ConfigServer.http_port || 3000);
+    app.set('port', process.env.SERVER_PORT || 3000);
     app.use(CookieParser());
     app.use(BodyParser.urlencoded({
         extended: true,
