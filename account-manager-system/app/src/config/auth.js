@@ -1,17 +1,17 @@
 module.exports = {
   facebookAuth: {
-    clientID: '896605267054808',
-    clientSecret: '28f6a7d2842d5f9ba19e449131694902',
-    callbackURL: 'http://localhost:3000/auth/facebook/callback',
+    clientID: '',
+    clientSecret: '',
+    callbackURL: 'http://localhost:3001/auth/facebook/callback',
   },
   twitterAuth: {
-    consumerKey: '',
-    consumerSecret: '',
+    consumerKey: 'AAAAAAAAAAAAAAAAAAAAAAAA',
+    consumerSecret: 'AAAAAAAAAAAAAAAAAAAA',
     callbackURL: 'http://localhost:3001/auth/twitter/callback',
   },
   googleAuth: {
-    clientID: '262575533252-sviar9bm39g5c4dnlb6erkpvjme4hit2.apps.googleusercontent.com',
-    clientSecret: '1K1fRgOmy1WJK4_Z8ycGRyuz',
-    callbackURL: 'http://localhost:3000/auth/google/callback',
+    clientID: '',
+    clientSecret: '',
+    callbackURL: 'http://localhost:3001/auth/google/callback',
   },
 };

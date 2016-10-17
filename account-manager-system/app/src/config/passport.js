@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const TwitterStrategy = require('passport-twitter').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const User = require('../models/user');
 const ConfigAuth = require('./auth');
 
@@ -101,5 +102,14 @@ module.exports = function(passport) {
             //     });
             // });
 
+        }));
+
+    passport.use(new GoogleStrategy({
+            clientID: ConfigAuth.googleAuth.clientID,
+            clientSecret: ConfigAuth.googleAuth.clientSecret,
+            callbackURL: ConfigAuth.googleAuth.callbackURL,
+        },
+        function(token, refreshToken, profile, done) {
+            console.log('google');
         }));
 };
