@@ -1,0 +1,1 @@
+[權限](https://developers.facebook.com/docs/facebook-login/permissions/)
