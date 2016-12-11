@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "restler": "^3.4.0"
+    "request": "^2.79.0"
   }
 }

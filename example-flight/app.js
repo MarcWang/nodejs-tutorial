@@ -1,35 +1,23 @@
-var util = require('util');
-var restclient = require('restler');
+var request = require('request');
 
-var fxml_url = 'http://flightxml.flightaware.com/json/FlightXML2/';
-var username = 'YOUR_USERNAME';
-var apiKey = 'YOUR_APIKEY';
+const API_SCHEDULE_INIERNATIONAL = 'http://ptx.transportdata.tw/MOTC/v2/Air/GeneralSchedule/International';
 
 
-restclient.get(fxml_url + 'MetarEx', {
-    username: username,
-    password: apiKey,
-    query: {airport: 'KAUS', howMany: 1}
-}).on('success', function(result, response) {
-    console.log(result)
-    console.log(response)
-    // util.puts(util.inspect(result, true, null));
-    var entry = result.MetarExResult.metar[0];
-    util.puts('The temperature at ' + entry.airport + ' is ' + entry.temp_air + 'C');
-});
+function syncSchedule(airline) {
+    let params = {};
+    params['$format'] = 'json';
+    // params['$top'] = 30;
+    params['$filter'] = `AirlineID eq '${airline}'`;
+    request({ url: API_SCHEDULE_INIERNATIONAL, qs: params }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            const json_data = JSON.parse(body);
+            console.log(json_data);
+            // for(const data of json_data){
+            //     console.log(data);
+            // } 
+        }
+    })
+}
 
-restclient.get(fxml_url + 'Enroute', {
-    username: username,
-    password: apiKey,
-    query: {airport: 'KIAH', howMany: 10, filter: '', offset: 0}
-}).on('success', function(result, response) {
-    util.puts('Aircraft en route to KIAH:');
-    //util.puts(util.inspect(result, true, null));
-    var flights = result.EnrouteResult.enroute;
-    for (i in flights) {
-      var flight = flights[i];
-      //util.puts(util.inspect(flight));
-      util.puts(flight.ident + ' (' + flight.aircrafttype + ')\t' + 
-          flight.originName + ' (' + flight.origin + ')');
-    }
-});
+syncSchedule('BR');
+
