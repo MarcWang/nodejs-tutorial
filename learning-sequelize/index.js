@@ -1,6 +1,6 @@
 const Sequelize = require('Sequelize');
 
-var sequelize = new Sequelize('mysql', 'root', '1234', {
+var sequelize = new Sequelize('sys', 'root', '2511213', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {
@@ -10,12 +10,71 @@ var sequelize = new Sequelize('mysql', 'root', '1234', {
     },
 });
 
-var Project = sequelize.define('project', {
-    title: Sequelize.STRING,
-    description: Sequelize.TEXT
-})
+// sequelize.sync({
+//     force: false
+// }).then(function(...params) {
+//     console.log('yes');
+// });
 
-var project = Project.build({ title: 'very important task' })
-// console.log(project)
+function City(sequelize) {
+    var City = sequelize.define('sys_config', {
+        id: {
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4,
+            allowNull: false,
+            primaryKey: true,
+            unique: true
+        },
+        title: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        desc: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+        avaliable: {
+            type: Sequelize.BOOLEAN,
+            allowNull: false,
+            defaultValue: true
+        },
+        bought: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        }
+    }, {
+        freezeTableName: true,
+        defaultScope: {
+            where: {
+                active: true
+            }
+        }
+    });
+    return City;
+};
 
-project.save();
+
+let cityProject = new City(sequelize);
+
+// var params = {
+//     title: "Awesome Tcicket1",
+//     desc: "Teste ticket1",
+//     avaliable: true
+// }
+
+// let model = ticket.build(params);
+// // console.log(model.dataValues);
+
+// model.save().then(function(...params) {
+//     console.log(params);
+// }).catch((error) => {
+//     // console.log(error)
+// })
+
+
+cityProject.findAll().then(function(values) {
+    console.log("Find All");
+    for (const value of values) {
+        console.log(value.dataValues);
+    }
+});
