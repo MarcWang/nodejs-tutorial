@@ -2,6 +2,10 @@
 ### Required
 - NodeJS v6.x
 
+### JavaScript
+- Automatic Semicolon Insertion ( ASI 自動插入分號 )
+- Immediately Invoked Function Expression ( IIFE 立即函式 )
+
 
 ### Express Module
 - [passportjs](https://github.com/jaredhanson/passport) - Authentication middleware for Express
