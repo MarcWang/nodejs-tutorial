@@ -1,0 +1,16 @@
+{
+  "name": "example-job-schedule",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "agenda": "^1.0.3",
+    "moment": "^2.19.2",
+    "node-schedule": "^1.2.5"
+  }
+}
