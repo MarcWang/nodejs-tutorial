@@ -6,11 +6,10 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "author": "",
+    "author": "MarcWang",
     "license": "ISC",
     "dependencies": {
         "cloudinary": "^1.9.0",
-        "dotenv": "^4.0.0",
-        "sharp": "^0.18.2"
+        "dotenv": "^4.0.0"
     }
 }
