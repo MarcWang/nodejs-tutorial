@@ -1,122 +1,48 @@
+# Firebase
 
+## 專案初始化設定
 
-### Server端加入Firebase
+1. 專案設定
+2. 服務帳號
+3. 選擇NodeJS
+4. 產生新的私密金鑰
 
-1. 建立一個專案[Firebase console](https://console.firebase.google.com/)
-2. 權限 -> IAM與管理員 -> 服務帳戶
-3. 選擇欲使用帳戶並在右方選擇建立金鑰
-4. 選擇JSON類型並建立
+> 金鑰內容如下
 
-安裝firebase sdk
-
-```bat
-npm install firbase --save
+``` json
+{
+  "type": "service_account",
+  "project_id": "YOUR_PROJECT_ID",
+  "private_key_id": "YOUR_PRIVATE_KEY_ID",
+  "private_key": "YOUR_PRIVATE_KEY",
+  "client_email": "YOUR_CLIENT_EMAIL",
+  "client_id": "YOUR_CLIENT_ID",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ps43a%40marctalk-623a0.iam.gserviceaccount.com"
+}
 ```
 
-接下來在程式中加入便可以使用
+``` js
+var admin = require("firebase-admin");
 
-```js
-var firebase = require("firebase");
-firebase.initializeApp({
-    serviceAccount: "path/to/serviceAccountCredentials.json",
-    databaseURL: "https://{databaseName}.firebaseio.com"
+var serviceAccount = require("path/to/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://YOUR_PROJECT_NAME.firebaseio.com"
 });
 ```
 
-參考 [Add Firebase to your Server](https://firebase.google.com/docs/server/setup)
+## 安裝firebase sdk
+
+```bat
+npm install firebase-admin --save
+```
 
 ### 儲存資料
 
 Firebase提供四種方式寫入資料 `set` 、 `update` 、 `push` 、 `transaction`。
-
-- set : 寫入或覆蓋至指定路徑； 如 `messages/users/<username>`
-
-``` js
-var schoolRef = ref.child("school");
-schoolRef.set({
-    classA: {
-        students: 50,
-        teacher: 'Marc'
-    },
-    classB: {
-        students: 35,
-        teacher: 'Ingrid'
-    }
-});
-```
-
-如果想要新增部分資訊也可以寫成這樣
-
-```js
-schoolRef.child("classC").set({
-    students: 49,
-    teacher: 'Nick'
-});
-```
-
-- update : 更新全部或部分資料
-
-```js
-var schoolRef = ref.child("school");
-schoolRef.update({
-    classA: {
-        students: 47,
-        teacher: 'Marc'
-    }
-})
-```
-
-一次同步更新多個也可以使用下面這種寫法
-
-```js
-schoolRef.update({
-    "classB/students": 41,
-    "classC/students": 51
-})
-```
-
-可以加入callback函式檢查成功或失敗
-
-``` js
-schoolRef.update({
-    "classB/students": 41,
-    "classC/students": 51
-}, (error) => {
-    if(error){
-        console.log(`Data could not be saved ${error}`);
-    }else{
-        console.log('Data saved successfully.')
-    }
-})
-```
-
-- push : 解決覆蓋問題，當有兩個同時寫入同一個位置時，會有其中一個寫入的資料會被覆蓋，所以利用`push`可以自動產生一個以時間戳的ID避免覆蓋。
-
-```js
-var postRef = ref.child("posts");
-var newPost = postRef.push();
-var postId = newPost.key;
-console.log(postId)
-//-JRHTHaIs-jNPLXOQivY
-
-newPost.set({
-    title: 'I like her',
-    author: 'Marc'
-})
-
-postRef.push().set({
-    title: 'He like me',
-    author: 'Ingrid'
-})
-```
-
-- transaction : 固定新增或減少數據時可使用
-
-```js
-var authorRef = db.ref('/some_resource/school/classA/students');
-authorRef.transaction((current_value) => {
-    return (current_value || 0) + 1;
-})
-```
 
 參考 [Saving Data](https://firebase.google.com/docs/database/server/save-data)

@@ -1,0 +1,74 @@
+{
+  "public_resource" : {
+    "school" : {
+      "class" : {
+        "1001" : {
+          "calls" : 2,
+          "create_time" : 1516863994336,
+          "exams" : {
+            "first" : 75,
+            "second" : 95
+          },
+          "id" : "1001",
+          "late" : {
+            "-L3g7vbfMS7yfttjkVKy" : {
+              "reason" : "reason 1",
+              "time" : "08:30"
+            }
+          },
+          "name" : "Marc",
+          "update_time" : 1516863994342
+        },
+        "1002" : {
+          "calls" : 2,
+          "create_time" : 1516863994341,
+          "exams" : {
+            "first" : 65,
+            "second" : 75
+          },
+          "id" : "1002",
+          "late" : {
+            "-L3g7vbg4hZ50Qwlyu09" : {
+              "reason" : "reason 2",
+              "time" : "08:20"
+            }
+          },
+          "name" : "David",
+          "update_time" : 1516863994344
+        },
+        "1003" : {
+          "calls" : 1,
+          "create_time" : 1516863994342,
+          "exams" : {
+            "first" : 79,
+            "second" : 72
+          },
+          "id" : "1003",
+          "name" : "Sam",
+          "update_time" : 1516863994345
+        },
+        "1004" : {
+          "calls" : 1,
+          "create_time" : 1516863994342,
+          "exams" : {
+            "first" : 85,
+            "second" : 65
+          },
+          "id" : "1004",
+          "late" : {
+            "-L3g7vbg4hZ50Qwlyu08" : {
+              "reason" : "reason 2",
+              "time" : "08:35"
+            },
+            "-L3g7vbhyFsA2vs36Jcj" : {
+              "reason" : "reason 2",
+              "time" : "08:39"
+            }
+          },
+          "name" : "Andy",
+          "update_time" : 1516863994345
+        }
+      }
+    }
+  }
+}
