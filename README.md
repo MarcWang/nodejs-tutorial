@@ -1,13 +1,16 @@
 
 ### Required
+
 - NodeJS v6.x
 
 ### JavaScript
+
 - Automatic Semicolon Insertion ( ASI 自動插入分號 )
 - Immediately Invoked Function Expression ( IIFE 立即函式 )
 
 
 ### Express Module
+
 - [passportjs](https://github.com/jaredhanson/passport) - Authentication middleware for Express
 - [connect-timeout](https://github.com/expressjs/timeout) - Request timeout middleware for Connect/Express
 - [errorhandler](https://github.com/expressjs/errorhandler) - Development-only error handler middleware for Express
@@ -19,11 +22,13 @@
 - [serve-favicon](https://github.com/expressjs/serve-favicon) - favicon serving middleware
 
 ### Passport Strategy
+
 - [passport-local](https://github.com/jaredhanson/passport-local) - Username and password authentication strategy for Passport
 - [passport-jwt](https://github.com/themikenicholson/passport-jwt) - Authenticating with a JSON Web Token for Passport
 - [passport.socketio](https://github.com/jfromaniello/passport.socketio) - Access passport.js user information from a socket.io connection
 
 ### Security Module
+
 - [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) - Implementation of JSON Web Tokens
 - [socketio-jwt](https://github.com/auth0/socketio-jwt) - Authenticate socket.io incoming connections with JWTs
 - [nsp](https://github.com/nodesecurity/nsp) - Node security platform command-line tool
@@ -34,14 +39,16 @@
 - [dotenv](https://github.com/motdotla/dotenv) Loads environment variables from .env
 
 ### Communicate
+
 - [socketcluster](https://github.com/SocketCluster/socketcluster) - Highly scalable realtime microframework
 
-
 ### Database
+
 - [thinky](https://github.com/neumino/thinky) - ORM for RethinkDB
 - [mongoose](https://github.com/Automattic/mongoose) - MongoDB
 
 ### Module
+
 - [http-errors](https://github.com/jshttp/http-errors) - HTTP errors for Express, Koa, Connect, etc. with ease.
 - [minimist](https://github.com/substack/minimist) - Parse argument options
 - [email-verification](https://github.com/whitef0x0/node-email-verification) - Send user verification emails with NodeJS and MongoDB
@@ -49,15 +56,20 @@
 - [node-fetch](https://github.com/bitinn/node-fetch) - A light-weight module that brings window.fetch to node.js and io.js
 
 ### Utility
+
 - [node-schedule](https://github.com/node-schedule/node-schedule) - A cron-like and not-cron-like job scheduler
 - [momentjs](http://momentjs.com/) - Parse, validate, manipulate, and display dates in JavaScript
 - [lodash](https://lodash.com/) - A modern JavaScript utility library delivering modularity, performance & extras.
+- [cheerio](https://github.com/cheeriojs/cheerio) - Fast, flexible, and lean implementation of core jQuery designed specifically for the server.
+- [scrape-it](https://github.com/IonicaBizau/scrape-it) - A Node.js scraper for humans
 
 ### Test
+
 - [ava](https://github.com/avajs/ava) - Futuristic JavaScript test runner
-- [mocha]()
+- [mocha](https://mochajs.org/)
 - [chai](http://chaijs.com/api/bdd/)
 
 ### Manager
+
 - [strongloop](https://strongloop.com/node-js/api-gateway/) - API Gateway acts as an intermediary gateway between API consumers (clients) and backend providers (API servers)
 - [PM2](https://github.com/Unitech/pm2) is a production process manager for Node.js applications with a built-in load balancer
